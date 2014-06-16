@@ -48,7 +48,7 @@ public class WSiswImpl implements WSisw, Serializable {
             if (rutNum == null) {
                 throw new RuntimeException("Rut inválido");
             } else {
-                accesos = servicioWS.getAccesos();
+                accesos = servicioWS.getAccesos(rutNum);
                 if (accesos.isEmpty()) {
                     throw new RuntimeException("No existen accesos");
                 }
