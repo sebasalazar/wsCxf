@@ -5,7 +5,7 @@ CREATE TABLE mensajes (
     pk bigserial NOT NULL,
     fecha timestamp NOT NULL DEFAULT NOW(),
     mensaje text,
-    rut bigint NOT NULL DEFAULT '15997886',
+    rut bigint NOT NULL DEFAULT '1',
     PRIMARY KEY (pk)
 );
 

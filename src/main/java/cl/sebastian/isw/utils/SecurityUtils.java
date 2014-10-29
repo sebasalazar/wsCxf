@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  *
- * @author Sebastián Salazar Molina <ssalazar@orangepeople.cl>
+ * @author Sebastián Salazar Molina <sebasalazar@gmail.com>
  */
 public class SecurityUtils implements Serializable {
 
@@ -26,8 +26,7 @@ public class SecurityUtils implements Serializable {
         try {
             hash = DigestUtils.sha256Hex(text);
         } catch (Exception e) {
-            logger.error(e.toString());
-            logger.debug(e.toString());
+            logger.error("Error al hashear en Sha256: {}", e.toString());
         }
         return hash;
     }
@@ -37,8 +36,7 @@ public class SecurityUtils implements Serializable {
         try {
             hash = DigestUtils.sha1Hex(text);
         } catch (Exception e) {
-            logger.error(e.toString());
-            logger.debug(e.toString());
+            logger.error("Error al hashear en Sha1: {}", e.toString());
         }
         return hash;
     }

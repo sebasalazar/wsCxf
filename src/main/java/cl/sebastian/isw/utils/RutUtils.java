@@ -118,7 +118,7 @@ public abstract class RutUtils implements Serializable {
             }
 
         } catch (Exception e) {
-            logger.error(e.toString());
+            logger.error("Error al parsear rut: {}", e.toString());
             logger.debug("Error al parsear rut", e);
         }
 
