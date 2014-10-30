@@ -10,13 +10,17 @@ import org.apache.commons.lang3.math.NumberUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class RutUtils implements Serializable {
+public class RutUtils implements Serializable {
 
     public static final String DEFAULT_RUT_PATTERN = "##.###.###-X";
     private static final Pattern outRutRE = Pattern.compile("([0\\#\\.\\,]+)([^X^x^\\,^\\.^9]*)([Xx]*)");
     private static final Pattern inRutRE = Pattern.compile("([0-9\\.]+)\\-([a-zA-Z0-9]+)");
     private static final Logger logger = LoggerFactory.getLogger(RutUtils.class);
 
+    private RutUtils() {
+        throw new AssertionError();
+    }
+    
     public static Long parseRut(String value) {
         Long result = null;
         if (value != null) {

@@ -2,9 +2,11 @@ package cl.sebastian.isw.ws;
 
 import cl.sebastian.isw.modelo.Acceso;
 import cl.sebastian.isw.modelo.Mensaje;
+import cl.sebastian.isw.vo.EstadoSalida;
 import java.util.List;
 import javax.jws.WebParam;
 import javax.jws.WebService;
+import javax.xml.ws.Holder;
 
 /**
  *
@@ -13,13 +15,13 @@ import javax.jws.WebService;
 @WebService
 public interface WSisw {
 
-    public List<Acceso> getAccesos();
+    public List<Acceso> getAccesos(@WebParam(name = "estadoSalida", mode = WebParam.Mode.OUT) Holder<EstadoSalida> estadoSalida);
 
-    public List<Acceso> getAccesosPorRut(@WebParam(name = "rut") String rut);
+    public List<Acceso> getAccesosPorRut(@WebParam(name = "rut") String rut, @WebParam(name = "estadoSalida", mode = WebParam.Mode.OUT) Holder<EstadoSalida> estadoSalida);
 
-    public List<Mensaje> getMensajesPorRut(@WebParam(name = "rut") String rut);
+    public List<Mensaje> getMensajesPorRut(@WebParam(name = "rut") String rut, @WebParam(name = "estadoSalida", mode = WebParam.Mode.OUT) Holder<EstadoSalida> estadoSalida);
 
-    public Mensaje getMensajePorRut(@WebParam(name = "rut") String rut);
-    
-    public Mensaje guardarMensaje(@WebParam(name = "mensaje") String mensaje, @WebParam(name = "rut") String rut);
+    public Mensaje getMensajePorRut(@WebParam(name = "rut") String rut, @WebParam(name = "estadoSalida", mode = WebParam.Mode.OUT) Holder<EstadoSalida> estadoSalida);
+
+    public Mensaje guardarMensaje(@WebParam(name = "mensaje") String mensaje, @WebParam(name = "rut") String rut, @WebParam(name = "estadoSalida", mode = WebParam.Mode.OUT) Holder<EstadoSalida> estadoSalida);
 }

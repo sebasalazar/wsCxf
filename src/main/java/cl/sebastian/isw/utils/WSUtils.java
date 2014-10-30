@@ -1,5 +1,6 @@
 package cl.sebastian.isw.utils;
 
+import cl.sebastian.isw.vo.EstadoSalida;
 import java.io.Serializable;
 import javax.servlet.http.HttpServletRequest;
 import org.apache.cxf.message.Message;
@@ -12,8 +13,21 @@ import org.slf4j.LoggerFactory;
  *
  * @author Sebastián Salazar Molina <sebasalazar@gmail.com>
  */
-public abstract class WSUtils implements Serializable  {
+public class WSUtils implements Serializable {
+
     private static final Logger logger = LoggerFactory.getLogger(WSUtils.class);
+    // Estados finales
+    public static final EstadoSalida ok = new EstadoSalida(1, "Salida correcta");
+    public static final EstadoSalida rutErroneo = new EstadoSalida(-1, "Rut inválido");
+    public static final EstadoSalida errorPersistencia = new EstadoSalida(-2, "No se pudo guardar su petición");
+    public static final EstadoSalida sinDatos = new EstadoSalida(-3, "No existen datos");
+    public static final EstadoSalida errorCifrado = new EstadoSalida(-4, "Error al cifrar datos");
+    public static final EstadoSalida errorDescifrado = new EstadoSalida(-5, "Error al descifrar datos");
+    public static final EstadoSalida errorGenerico = new EstadoSalida(-99, "Error no manejado");
+
+    private WSUtils() {
+        throw new AssertionError();
+    }
 
     public static String getIp() {
         String ip = "0.0.0.0";

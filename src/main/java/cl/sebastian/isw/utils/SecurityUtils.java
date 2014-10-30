@@ -21,6 +21,10 @@ public class SecurityUtils implements Serializable {
     private static final String modoAlgoritmo = "Blowfish/CBC/PKCS5Padding";
     private static final Logger logger = LoggerFactory.getLogger(SecurityUtils.class);
 
+    private SecurityUtils() {
+        throw new AssertionError();
+    }
+
     public static String hashSha256(String text) {
         String hash = "";
         try {
