@@ -26,7 +26,7 @@
         <hibernate.jpa.version>1.0.0.Final</hibernate.jpa.version>
         <hibernate.version>4.3.5.Final</hibernate.version>
         <hibernate.validator.version>5.1.1.Final</hibernate.validator.version>
-        <spring.data.version>1.6.0.RELEASE</spring.data.version>
+        <spring.data.version>1.7.1.RELEASE</spring.data.version>
         <jersey.version>2.9</jersey.version>
     </properties>
 

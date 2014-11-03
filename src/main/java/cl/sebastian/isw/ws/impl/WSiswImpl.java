@@ -4,6 +4,7 @@ import cl.sebastian.isw.modelo.Acceso;
 import cl.sebastian.isw.modelo.Mensaje;
 import cl.sebastian.isw.servicio.ServicioWS;
 import cl.sebastian.isw.utils.RutUtils;
+import cl.sebastian.isw.utils.SecurityUtils;
 import cl.sebastian.isw.utils.WSUtils;
 import cl.sebastian.isw.vo.EstadoSalida;
 import cl.sebastian.isw.ws.WSisw;
