@@ -2,6 +2,7 @@ package cl.sebastian.isw.ws;
 
 import cl.sebastian.isw.modelo.Acceso;
 import cl.sebastian.isw.modelo.Mensaje;
+import cl.sebastian.isw.modelo.Pais;
 import cl.sebastian.isw.vo.EstadoSalida;
 import java.util.List;
 import javax.jws.WebParam;
@@ -24,4 +25,6 @@ public interface WSisw {
     public Mensaje getMensajePorRut(@WebParam(name = "rut") String rut, @WebParam(name = "estadoSalida", mode = WebParam.Mode.OUT) Holder<EstadoSalida> estadoSalida);
 
     public Mensaje guardarMensaje(@WebParam(name = "mensaje") String mensaje, @WebParam(name = "rut") String rut, @WebParam(name = "estadoSalida", mode = WebParam.Mode.OUT) Holder<EstadoSalida> estadoSalida);
+    
+    public Pais consultarPais(@WebParam(name = "ip") String ip);
 }

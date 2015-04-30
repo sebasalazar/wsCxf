@@ -2,8 +2,10 @@ package cl.sebastian.isw.servicio.impl;
 
 import cl.sebastian.isw.modelo.Acceso;
 import cl.sebastian.isw.modelo.Mensaje;
+import cl.sebastian.isw.modelo.Pais;
 import cl.sebastian.isw.repository.AccesoRepository;
 import cl.sebastian.isw.repository.MensajeRepository;
+import cl.sebastian.isw.repository.PaisRepository;
 import cl.sebastian.isw.servicio.ServicioWS;
 import cl.sebastian.isw.utils.WSUtils;
 import java.io.Serializable;
@@ -29,6 +31,8 @@ public class ServicioWSImpl implements ServicioWS, Serializable {
     private MensajeRepository mensajeRepository;
     @Resource(name = "accesoRepository")
     private AccesoRepository accesoRepository;
+    @Resource(name = "paisRepository")
+    private PaisRepository paisRepository;
     private static final Logger logger = LoggerFactory.getLogger(ServicioWSImpl.class);
 
     @Override
@@ -144,5 +148,20 @@ public class ServicioWSImpl implements ServicioWS, Serializable {
             logger.debug("Error al obtener accesos", e);
         }
         return accesos;
+    }
+
+    @Override
+    public Pais getPais(Integer id) {
+        Pais pais = null;
+        try {
+            if (id != null) {
+                pais = paisRepository.findOne(id);
+            }
+        } catch (Exception e) {
+            pais = null;
+            logger.error("Error al obtener País: {}", e.toString());
+            logger.debug("Error al obtener País: {}", e.toString(), e);
+        }
+        return pais;
     }
 }
