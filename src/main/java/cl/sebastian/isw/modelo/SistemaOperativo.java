@@ -7,11 +7,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Sebastián Salazar Molina <ssalazar@experti.cl>
  */
+@XmlRootElement
 @Entity
 @Table(name = "sistemas_operativos")
 public class SistemaOperativo extends BaseBean {
@@ -24,10 +26,10 @@ public class SistemaOperativo extends BaseBean {
     private String nombre = null;
     @Column(name = "version")
     private String version = null;
-    @Column(name = "descripcion")
-    private String descripcion = null;
-    @Column(name = "bits")
+    @Column(name = "propietario")
     private String propietario = null;
+    @Column(name = "bits")
+    private Integer bits = null;
 
     public Integer getId() {
         return id;
@@ -53,20 +55,20 @@ public class SistemaOperativo extends BaseBean {
         this.version = version;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
     public String getPropietario() {
         return propietario;
     }
 
     public void setPropietario(String propietario) {
         this.propietario = propietario;
+    }
+
+    public Integer getBits() {
+        return bits;
+    }
+
+    public void setBits(Integer bits) {
+        this.bits = bits;
     }
 
     @Override

@@ -9,11 +9,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Sebastián Salazar Molina <ssalazar@experti.cl>
  */
+@XmlRootElement
 @Entity
 @Table(name = "browsers")
 public class Browser extends BaseBean {
@@ -26,13 +28,12 @@ public class Browser extends BaseBean {
     private String nombre = null;
     @Column(name = "version")
     private String version = null;
-    @Column(name = "descripcion")
-    private String descripcion = null;
-    @Column(name = "bits")
+    @Column(name = "propietario")
     private String propietario = null;
-    @Column(name = "so_fk")
+    @Column(name = "bits")
+    private Integer bits = null;
     @ManyToOne
-    @JoinColumn(referencedColumnName = "pk")
+    @JoinColumn(name = "so_fk", referencedColumnName = "pk")
     private SistemaOperativo sistemaOperativo = null;
 
     public Integer getId() {
@@ -59,14 +60,6 @@ public class Browser extends BaseBean {
         this.version = version;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
     public String getPropietario() {
         return propietario;
     }
@@ -81,6 +74,14 @@ public class Browser extends BaseBean {
 
     public void setSistemaOperativo(SistemaOperativo sistemaOperativo) {
         this.sistemaOperativo = sistemaOperativo;
+    }
+
+    public Integer getBits() {
+        return bits;
+    }
+
+    public void setBits(Integer bits) {
+        this.bits = bits;
     }
 
     @Override

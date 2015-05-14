@@ -1,7 +1,9 @@
 package cl.sebastian.isw.servicio.impl;
 
+import cl.sebastian.isw.modelo.Agente;
 import cl.sebastian.isw.modelo.Browser;
 import cl.sebastian.isw.modelo.SistemaOperativo;
+import cl.sebastian.isw.repository.AgenteRepository;
 import cl.sebastian.isw.repository.BrowserRepository;
 import cl.sebastian.isw.repository.SistemaOperativoRepository;
 import cl.sebastian.isw.servicio.ServicioBrowser;
@@ -21,6 +23,8 @@ import org.springframework.stereotype.Service;
 @Service("servicioBrowser")
 public class ServicioBrowserImpl implements ServicioBrowser, Serializable {
 
+    @Resource(name = "agenteRepository")
+    private AgenteRepository agenteRepository;
     @Resource(name = "browserRepository")
     private BrowserRepository browserRepository;
     @Resource(name = "sistemaOperativoRepository")
@@ -136,6 +140,12 @@ public class ServicioBrowserImpl implements ServicioBrowser, Serializable {
     public Browser getBrowser(String userAgent) {
         Browser browser = null;
         try {
+            Agente agente = agenteRepository.findByValorIgnoreCase(userAgent);
+            if (agente != null) {
+                browser = agente.getBrowser();
+            } else {
+                browser = browserRepository.findOne(1);
+            }
         } catch (Exception e) {
             browser = null;
             logger.error("Error al consultar browser: {}", e.toString());

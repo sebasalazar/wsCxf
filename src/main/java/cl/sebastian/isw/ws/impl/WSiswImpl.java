@@ -1,8 +1,10 @@
 package cl.sebastian.isw.ws.impl;
 
 import cl.sebastian.isw.modelo.Acceso;
+import cl.sebastian.isw.modelo.Browser;
 import cl.sebastian.isw.modelo.Mensaje;
 import cl.sebastian.isw.modelo.Pais;
+import cl.sebastian.isw.servicio.ServicioBrowser;
 import cl.sebastian.isw.servicio.ServicioSQL;
 import cl.sebastian.isw.servicio.ServicioWS;
 import cl.sebastian.isw.utils.RutUtils;
@@ -30,10 +32,12 @@ public class WSiswImpl implements WSisw, Serializable {
     private ServicioWS servicioWS;
     @Resource(name = "servicioSQL")
     private ServicioSQL servicioSQL;
+    @Resource(name = "servicioBrowser")
+    private ServicioBrowser servicioBrowser;
     private static final Logger logger = LoggerFactory.getLogger(WSiswImpl.class);
 
     @Override
-    public List<Acceso> getAccesos(Holder<EstadoSalida> estadoSalida) {
+    public List<Acceso> consultarAccesos(Holder<EstadoSalida> estadoSalida) {
         List<Acceso> accesos = new ArrayList<Acceso>();
         EstadoSalida salida = WSUtils.errorGenerico;
         try {
@@ -55,7 +59,7 @@ public class WSiswImpl implements WSisw, Serializable {
     }
 
     @Override
-    public List<Acceso> getAccesosPorRut(String rut, Holder<EstadoSalida> estadoSalida) {
+    public List<Acceso> consultarAccesosPorRut(String rut, Holder<EstadoSalida> estadoSalida) {
         List<Acceso> accesos = new ArrayList<Acceso>();
         EstadoSalida salida = WSUtils.errorGenerico;
         try {
@@ -81,7 +85,7 @@ public class WSiswImpl implements WSisw, Serializable {
     }
 
     @Override
-    public List<Mensaje> getMensajesPorRut(String rut, Holder<EstadoSalida> estadoSalida) {
+    public List<Mensaje> consultarMensajesPorRut(String rut, Holder<EstadoSalida> estadoSalida) {
         List<Mensaje> mensajes = new ArrayList<Mensaje>();
         EstadoSalida salida = WSUtils.errorGenerico;
         try {
@@ -107,7 +111,7 @@ public class WSiswImpl implements WSisw, Serializable {
     }
 
     @Override
-    public Mensaje getMensajePorRut(String rut, Holder<EstadoSalida> estadoSalida) {
+    public Mensaje consultarMensajePorRut(String rut, Holder<EstadoSalida> estadoSalida) {
         Mensaje msj = null;
         EstadoSalida salida = WSUtils.errorGenerico;
         try {
@@ -171,5 +175,20 @@ public class WSiswImpl implements WSisw, Serializable {
             logger.debug("Error al consultar País: {}", e.toString(), e);
         }
         return pais;
+    }
+
+    @Override
+    public Browser consultarBrowser(String agenteUsuario) {
+        Browser browser = null;
+        try {
+            if (StringUtils.isNotBlank(agenteUsuario)) {
+                browser = servicioBrowser.getBrowser(agenteUsuario);
+            }
+        } catch (Exception e) {
+            browser = null;
+            logger.error("Error al consultar Browser: {}", e.toString());
+            logger.debug("Error al consultar Browser: {}", e.toString(), e);
+        }
+        return browser;
     }
 }

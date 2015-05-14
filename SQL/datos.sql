@@ -447,6 +447,7 @@ INSERT INTO sistemas_operativos (nombre, version, descripcion, bits, propietario
 --
 -- Browsers
 -- 
+INSERT INTO browsers (nombre, version, propietario, bits, so_fk) VALUES ('Desconocido', 'Desconocido', 'Desconocido', 0, 1);
 INSERT INTO browsers (nombre, version, propietario, bits, so_fk) VALUES ('360Spider', '0.0', 'so.360.cn', 32, 2);
 INSERT INTO browsers (nombre, version, propietario, bits, so_fk) VALUES ('Comodo Dragon', '32.0', 'Comodo Group Inc', 64, 20);
 INSERT INTO browsers (nombre, version, propietario, bits, so_fk) VALUES ('360Spider', '0.0', 'so.360.cn', 64, 5);

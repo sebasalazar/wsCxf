@@ -70,4 +70,15 @@ CREATE TABLE browsers (
     PRIMARY KEY (pk)
 );
 
+
+DROP TABLE IF EXISTS agentes CASCADE;
+CREATE TABLE agentes (
+    pk bigserial NOT NULL,
+    valor varchar(255) NOT NULL,
+    browser_fk int NOT NULL REFERENCES browsers(pk) ON UPDATE CASCADE ON DELETE CASCADE,
+    UNIQUE (valor),
+    PRIMARY KEY (pk)
+);
+
+
 COMMIT;
